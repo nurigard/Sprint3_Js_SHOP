@@ -1,4 +1,5 @@
 // If you have time, you can move this variable "products" to a json file and load the data in this js. It will look more professional
+
 var products = [
     {
         id: 1,
@@ -55,6 +56,7 @@ var products = [
         type: 'clothes'
     }
 ]
+
 // Array with products (objects) added directly with push(). Products in this array are repeated.
 var cartList = [];
 
@@ -78,25 +80,70 @@ var subtotal = {
 var total = 0;
 
 // Exercise 1
+
+/* Per llegir l'arxiu json
+fetch("/products.json")
+    .then (response => response.json())
+    .then (json => console.log(json))
+
+const products = JSON.parse(products);
+*/
+
+
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
-}
 
-// Exercise 2
+            for (let i=0; i<products.length; i++){
+                if(products[i].id == id){
+                   cartList.push(products[i])
+                }
+            }
+}
+console.log(cartList);
+
+
+// Exercise 2   
 function cleanCart() {
-
+    cartList.length = 0;
+    return cartList;
 }
+
 
 // Exercise 3
 function calculateSubtotals() {
     // 1. Create a for loop on the "cartList" array 
     // 2. Implement inside the loop an if...else or switch...case to add the quantities of each type of product, obtaining the subtotals: subtotalGrocery, subtotalBeauty and subtotalClothes
+
+    for(let i=0; i<cartList.length; i++){
+            switch(cartList[i].type){
+                case 'grocery':
+                    subtotal.grocery.value += cartList[i].price;
+                    break;
+
+                case 'beauty':
+                    subtotal.beauty.value += cartList[i].price;
+                    break;
+    
+                case 'clothes':
+                    subtotal.clothes.value += cartList[i].price;
+                    break;
+            }
+    }
+
+    return console.log(subtotal);
 }
+
+
 
 // Exercise 4
 function calculateTotal() {
     // Calculate total price of the cart either using the "cartList" array
+        
+
+
+
+
 }
 
 // Exercise 5
