@@ -101,17 +101,35 @@ function buy(id) {
             }
 }
 console.log(cartList);
-
+//console.log(`cartList  ${cartList}`);
 
 // Exercise 2   
-function cleanCart() {
+function cleanCart(cartList) {
     cartList.length = 0;
-    return cartList;
+    
+    /* Si tenim moltes propietats
+    for(let key in subtotal){
+        //console.log(`${subtotal[key].value = 0} i ${subtotal[key].discount = 0}`) 
+        //No es necessari fer un console.log
+        subtotal[key].value = 0;
+        subtotal[key].discount = 0;
+    }
+    */
+
+    subtotal.grocery.value = 0;
+    subtotal.grocery.discount = 0;
+    subtotal.beauty.value = 0;
+    subtotal.beauty.discount = 0;
+    subtotal.clothes.value = 0;
+    subtotal.clothes.discount = 0;
+    
+
+    return console.log(cartList);
 }
 
 
 // Exercise 3
-function calculateSubtotals() {
+function calculateSubtotals(cartList) {
     // 1. Create a for loop on the "cartList" array 
     // 2. Implement inside the loop an if...else or switch...case to add the quantities of each type of product, obtaining the subtotals: subtotalGrocery, subtotalBeauty and subtotalClothes
 
@@ -137,20 +155,83 @@ function calculateSubtotals() {
 
 
 // Exercise 4
-function calculateTotal() {
+function calculateTotal(cartList) {
     // Calculate total price of the cart either using the "cartList" array
-        
 
+        let totalPrice=0;
+        for(let indexArray in cartList) {
+                totalPrice += cartList[indexArray].price;
+        }
 
-
-
+        console.log(totalPrice);
 }
+
+
 
 // Exercise 5
-function generateCart() {
+//function generateCart(cartList) {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+
+    /*
+    for(let x=0; x<cartList.length; x++){
+            cartList[x].quantity=0;
+            cartList[x].subtotal=0;
+            cartList[x].subtotalWithDiscount=0;
+    }
+    
+    console.log(`cartList: ${cartList}`);
+    
+    
+    cartList.map(elementcartList => {
+
+            for (let i=0; i<=cart.length; i++){
+
+                    if(elementcartList !== cart[i]){
+                        cart.push(elementcartList)
+                    }else{
+                        cart.push(elementcartList.quantity++)
+                    }
+            }
+                
+    })
+
+    console.log(`cart: ${cart}`);
+    */
+
+
+    var productsInCart = [];
+
+    function generateCart (cartList) {
+
+    cartList.map(elementcartList => {
+        
+
+        elementcartList.quantity=1;
+        elementcartList.subtotal=0;
+        elementcartList.subtotalWithDiscount=0;
+
+
+        for (let i=0; i<productsInCart.length; i++){
+
+            if(elementcartList !== productsInCart[i]){
+                productsInCart.push(elementcartList)
+                cart.push(elementcartList)
+
+            }else{
+                cart.push(elementcartList.quantity++)
+            }
+    }
+        
+    })
+    
+    return console.log(cart);
+            console.log(productsInCart);
+
 }
+
+
+
 
 // Exercise 6
 function applyPromotionsCart() {
@@ -174,3 +255,24 @@ function removeFromCart(id) {
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
 }
+
+
+
+/*
+El array cart contendrá los productos sin repetir junto con las correspondientes propiedades de quantity, etc.
+
+1. Crea un array llamado productsInCart que tendrá los nombres de los productos que has ido añadiendo al array cart.
+2. Recorre el array cartList y evalúa si el nombre del producto sobre el que estás iterando está presente en productsInCart.
+3. Si no está presente, debes añadir un nuevo producto con los valores de quantity = 1, etc. al array cart. También debemos añadir el nombre del producto al array productsInCart, para que si vuelve a salir un producto con el mismo nombre, se meta por el else del if, que gestionaremos en el siguiente paso. Como este paso es más sencillo que el siguiente, asegúrate de crear un array cart en el que a pesar de haber productos repetidos en cartList, en el array cart el quantity siempre será 1. Completa y comprueba este paso antes de hacer el siguiente.
+4. Si está presente será porque ya hemos añadido el producto a la variable Cart y debemos modificar el objeto correspondiente en el array cart, incrementando los valores de quantity, etc
+
+
+
+
+
+
+
+
+
+
+*/ 
