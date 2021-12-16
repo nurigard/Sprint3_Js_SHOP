@@ -175,20 +175,21 @@ function calculateTotal(cartList) {
     console.log('cartList:', cartList);
 
         for(let i=0; i<cartList.length; i++){
-                let filterCart = cart.filter(ncart => {ncart===cartList[i]})
+                let filterCart = cart.filter(ncart => ncart===cartList[i])
                 console.log('filterCart', filterCart);
 
                 if(filterCart.length===0){
                     cartList[i].quantity=1;
-                    cartList[i].subtotal=0;
-                    cartList[i].subtotalWithDiscount=0;
+                    cartList[i]['subtotal']=cartList[i]['price']*cartList[i]['quantity'];
+                    cartList[i]['subtotalWithDiscount']=cartList[i]['subtotal'];
                     cart.push(cartList[i])
 
                 }else if (filterCart!==0){
                     for(let j=0; j<cart.length; j++){
                         if(cartList[i].id === cart[j].id){
                             cart[j]['quantity']=cart[j]['quantity']+1
-
+                            cart[j]['subtotal']=cart[j]['price']*cart[j]['quantity'];
+                            cart[j]['subtotalWithDiscount']=cart[j]['subtotal'];
                 }
                 }
             }
@@ -223,83 +224,6 @@ function calculateTotal(cartList) {
 
     */
 }
-    console.log('cart:', cart);
-
-/*
-
-    var productsInCart = [];
-
-    function generateCart (cartList) {
-
-    cartList.map(elementcartList => {
-        
-
-        elementcartList.quantity=1;
-        elementcartList.subtotal=0;
-        elementcartList.subtotalWithDiscount=0;
-
-
-        for (let i=0; i<=productsInCart.length; i++){
-
-            if(elementcartList !== productsInCart[i]){
-                productsInCart.push(elementcartList)
-                cart.push(elementcartList)
-
-            }else{
-                cart.push(elementcartList.quantity++)
-            }
-    }
-        
-    })
-    
-    console.log(cart);
-    console.log(productsInCart);
-
-}
-*/
-/*
-var productsInCart = [];
-
-function generateCart(cartList) {
-
-cartList.map(elementcartList => {
-    
-    elementcartList.quantity=0;
-    elementcartList.subtotal=0;
-    elementcartList.subtotalWithDiscount=0;
-
-    if(productsInCart.length===0){
-        elementcartList['quantity'] = elementcartList['quantity']+1;
-        console.log(`elementcartList quan productsInCart.length=0  ${elementcartList}`)
-        productsInCart.push(elementcartList);
-        cart.push(elementcartList);
-    }
-
-    for (let i=0; i<productsInCart.length; i++){
-
-        if(elementcartList.id !== productsInCart[i].id){
-            elementcartList['quantity'] = elementcartList['quantity']+1;
-            productsInCart.push(elementcartList);
-            cart.push(elementcartList);
-
-        }else if(elementcartList.id===productsInCart[i].id && elementcartList.quantity!==productsInCart[i].quantity){
-            cart.push(elementcartList.quantity+1)
-        }
-    }
-    
-    return console.log(cart, productsInCart);
-    //console.log(productsInCart);
-})
-
-
-
-
-console.log(cart);
-console.log(productsInCart);
-
-}
-
-*/
 
 // Exercise 6
 function applyPromotionsCart() {
@@ -323,24 +247,3 @@ function removeFromCart(id) {
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
 }
-
-
-
-/*
-El array cart contendrá los productos sin repetir junto con las correspondientes propiedades de quantity, etc.
-
-1. Crea un array llamado productsInCart que tendrá los nombres de los productos que has ido añadiendo al array cart.
-2. Recorre el array cartList y evalúa si el nombre del producto sobre el que estás iterando está presente en productsInCart.
-3. Si no está presente, debes añadir un nuevo producto con los valores de quantity = 1, etc. al array cart. También debemos añadir el nombre del producto al array productsInCart, para que si vuelve a salir un producto con el mismo nombre, se meta por el else del if, que gestionaremos en el siguiente paso. Como este paso es más sencillo que el siguiente, asegúrate de crear un array cart en el que a pesar de haber productos repetidos en cartList, en el array cart el quantity siempre será 1. Completa y comprueba este paso antes de hacer el siguiente.
-4. Si está presente será porque ya hemos añadido el producto a la variable Cart y debemos modificar el objeto correspondiente en el array cart, incrementando los valores de quantity, etc
-
-
-
-
-
-
-
-
-
-
-*/ 
